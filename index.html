@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon — Joe Crockett</title>
+  <meta name="description" content="Joe Crockett — developer and builder. Portfolio coming soon." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --glow-purple: rgba(139, 92, 246, 0.15);
+      --glow-blue: rgba(59, 130, 246, 0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #060608;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle noise grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* ── Ambient orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+    .orb-purple {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+      top: -250px; right: -180px;
+      animation: orbDrift 22s ease-in-out infinite alternate;
+    }
+    .orb-blue {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(59,130,246,0.14) 0%, transparent 70%);
+      bottom: 80px; left: -180px;
+      animation: orbDrift 28s ease-in-out infinite alternate-reverse;
+    }
+    .orb-cyan {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%);
+      top: 55%; left: 45%;
+      animation: orbDrift 18s ease-in-out infinite alternate;
+    }
+    @keyframes orbDrift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 50px) scale(1.12); }
+    }
+
+    /* ── Cursor glow ── */
+    #cursorGlow {
+      position: fixed;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 998;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    /* ── Glass ── */
+    .glass {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    /* ── Gradient text ── */
+    .grad-text {
+      background: linear-gradient(130deg, #fff 0%, #a78bfa 38%, #60a5fa 68%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-text-subtle {
+      background: linear-gradient(130deg, #f8fafc 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Header ── */
+    header {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.3s;
+    }
+
+    /* ── Social links ── */
+    .social-link {
+      color: rgba(148,163,184,0.65);
+      transition: color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+    }
+    .social-link:hover { color: #e2e8f0; transform: translateY(-1px); }
+
+    /* ── Status badge pulse ── */
+    .pulse-dot { animation: pulseDot 2.8s ease-in-out infinite; }
+    @keyframes pulseDot {
+      0%,100% { opacity: 0.55; box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
+      50%      { opacity: 1;    box-shadow: 0 0 0 4px rgba(52,211,153,0); }
+    }
+
+    /* ── Dot-grid hero bg ── */
+    .dot-grid {
+      background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* ── Hero animate-in ── */
+    .hero-item { opacity: 0; transform: translateY(22px); animation: heroIn 0.75s ease forwards; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.22s; }
+    .d3 { animation-delay: 0.40s; }
+    .d4 { animation-delay: 0.58s; }
+    .d5 { animation-delay: 0.74s; }
+    @keyframes heroIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Email input ── */
+    input[type="email"] {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #e2e8f0;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    input[type="email"]:focus {
+      border-color: rgba(139,92,246,0.65);
+      background: rgba(139,92,246,0.06);
+      box-shadow: 0 0 0 3px rgba(139,92,246,0.12), 0 0 24px rgba(139,92,246,0.12);
+    }
+    input[type="email"]::placeholder { color: rgba(148,163,184,0.45); }
+    input[type="email"].invalid {
+      border-color: rgba(239,68,68,0.6) !important;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.10) !important;
+    }
+
+    /* ── CTA button ── */
+    .btn-cta {
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      border: none; cursor: pointer;
+      position: relative; overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.15s;
+    }
+    .btn-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-cta:hover::before { opacity: 1; }
+    .btn-cta:hover {
+      box-shadow: 0 0 32px rgba(124,58,237,0.45), 0 0 64px rgba(37,99,235,0.20);
+      transform: translateY(-1px);
+    }
+    .btn-cta:active { transform: translateY(0); }
+    .btn-cta > span { position: relative; z-index: 1; }
+
+    /* ── Success state ── */
+    #successState { display: none; }
+    .success-pop {
+      animation: successPop 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes successPop {
+      0%  { opacity: 0; transform: scale(0.7); }
+      60% { transform: scale(1.08); }
+      100%{ opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Divider ── */
+    .grad-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 30%, rgba(255,255,255,0.07) 70%, transparent 100%);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rv1 { transition-delay: 0.05s; }
+    .rv2 { transition-delay: 0.15s; }
+    .rv3 { transition-delay: 0.25s; }
+    .rv4 { transition-delay: 0.35s; }
+
+    /* ── 3D card ── */
+    .scene { perspective: 1000px; }
+    .card-3d { transform-style: preserve-3d; will-change: transform; }
+
+    /* Shine overlay */
+    .card-shine {
+      position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.07), transparent 55%);
+      opacity: 0; transition: opacity 0.25s; pointer-events: none;
+    }
+    .card-3d:hover .card-shine { opacity: 1; }
+
+    /* Glow border on hover */
+    .card-glow {
+      position: relative;
+      transition: box-shadow 0.3s;
+    }
+    .card-glow:hover {
+      box-shadow: 0 0 0 1px rgba(139,92,246,0.35), 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    /* ── Skill tags ── */
+    .skill-tag {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .skill-tag:hover {
+      background: rgba(139,92,246,0.12);
+      border-color: rgba(139,92,246,0.35);
+      color: #a78bfa;
+      transform: translateY(-2px);
+    }
+
+    /* ── Abstract visual grid ── */
+    .vis-cell {
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: border-color 0.4s, background 0.4s;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #060608; }
+    ::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.28); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.5); }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor glow -->
+  <div id="cursorGlow"></div>
+
+  <!-- Ambient orbs -->
+  <div class="orb orb-purple"></div>
+  <div class="orb orb-blue"></div>
+  <div class="orb orb-cyan"></div>
+
+  <!-- ════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <header id="mainHeader" class="fixed top-0 inset-x-0 z-50 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500
+                    flex items-center justify-center text-white font-bold"
+             style="font-size:10px; letter-spacing:-0.5px;">JC</div>
+        <span class="text-sm font-medium text-slate-300 tracking-tight">Joe Crockett</span>
+      </div>
+
+      <!-- Nav -->
+      <nav class="flex items-center gap-5">
+        <!-- GitHub -->
+        <a href="https://github.com/joecrockett" class="social-link" aria-label="GitHub"
+           target="_blank" rel="noopener noreferrer">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482
+                     0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462
+                     -1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529
+                     2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943
+                     0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025
+                     A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025
+                     2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842
+                     -2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743
+                     0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="https://x.com/joecrockett" class="social-link" aria-label="X (Twitter)"
+           target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68
+                     l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/joecrockett" class="social-link" aria-label="LinkedIn"
+           target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136
+                     1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85
+                     3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063
+                     -2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925
+                     2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0
+                     .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24
+                     22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+
+        <!-- Status chip -->
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass text-xs">
+          <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></div>
+          <span class="text-slate-400">Open to work</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center
+                  px-6 pt-28 pb-20 dot-grid z-10">
+    <div class="max-w-5xl mx-auto w-full text-center">
+
+      <!-- Eyebrow badge -->
+      <div class="hero-item d1 inline-flex items-center gap-2 px-4 py-2 rounded-full glass
+                  text-xs text-slate-400 mb-10">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#a78bfa"
+             stroke-width="2" class="flex-shrink-0">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span>Something exceptional is being crafted</span>
+        <span class="w-px h-3 bg-slate-700 inline-block"></span>
+        <span class="text-violet-400 font-medium">Stay tuned</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-item d2 text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight
+                 leading-none mb-7">
+        <span class="grad-text">Building</span><br/>
+        <span class="text-white">what's next.</span>
+      </h1>
+
+      <!-- Subhead -->
+      <p class="hero-item d3 text-lg md:text-xl text-slate-400 max-w-xl mx-auto mb-12 leading-relaxed">
+        A portfolio is coming — thoughtfully crafted, obsessively detailed.<br/>
+        <span class="text-slate-300">Get notified the moment it's live.</span>
+      </p>
+
+      <!-- Email form -->
+      <div id="emailForm" class="hero-item d4 flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mb-20">
+        <input id="emailInput" type="email" placeholder="you@example.com"
+               class="flex-1 px-4 py-3 rounded-xl text-sm" />
+        <button id="submitBtn" class="btn-cta px-6 py-3 rounded-xl text-sm font-semibold text-white"
+                onclick="handleSubmit()">
+          <span>Notify me</span>
+        </button>
+      </div>
+
+      <!-- Success state -->
+      <div id="successState" class="mb-20 flex flex-col items-center gap-3">
+        <div class="success-pop w-14 h-14 rounded-full bg-emerald-500/10
+                    border border-emerald-500/30 flex items-center justify-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="text-emerald-400 font-semibold">You're on the list.</p>
+        <p class="text-slate-500 text-sm">I'll reach out the moment it's live.</p>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="hero-item d5 flex flex-col items-center gap-2">
+        <span class="text-slate-600 text-xs tracking-widest uppercase">Explore</span>
+        <div class="w-px h-10 bg-gradient-to-b from-slate-600 to-transparent"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="grad-divider relative z-10"></div>
+
+  <!-- ════════════════════════════════════════
+       WHAT I DO — 3D Interactive Cards
+  ════════════════════════════════════════ -->
+  <section class="py-32 px-6 relative z-10">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <span class="text-violet-400 text-xs font-semibold tracking-widest uppercase mb-4 block">
+          What I do
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          Crafted with intent.
+        </h2>
+        <p class="text-slate-400 text-lg max-w-lg mx-auto">
+          Every pixel, every interaction, every millisecond — purposefully designed.
+        </p>
+      </div>
+
+      <!-- Card grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <!-- Card: UI Engineering -->
+        <div class="scene reveal rv1">
+          <div class="card-3d card-glow glass rounded-2xl p-7 relative overflow-hidden cursor-pointer"
+               data-tilt>
+            <div class="card-shine"></div>
+            <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20
+                        flex items-center justify-center mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                   stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">UI Engineering</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Pixel-perfect, accessible, blazing-fast interfaces — where engineering precision
+              meets design sensibility.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">React</span>
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">TypeScript</span>
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">CSS/Animation</span>
+            </div>
+            <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-violet-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          </div>
+        </div>
+
+        <!-- Card: Full-Stack Systems -->
+        <div class="scene reveal rv2">
+          <div class="card-3d card-glow glass rounded-2xl p-7 relative overflow-hidden cursor-pointer"
+               data-tilt>
+            <div class="card-shine"></div>
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20
+                        flex items-center justify-center mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                   stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Full-Stack Systems</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Architecture that scales. APIs that breathe. Databases that don't flinch
+              under real-world pressure.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">Node.js</span>
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">PostgreSQL</span>
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">AWS</span>
+            </div>
+            <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          </div>
+        </div>
+
+        <!-- Card: Product Thinking -->
+        <div class="scene reveal rv3">
+          <div class="card-3d card-glow glass rounded-2xl p-7 relative overflow-hidden cursor-pointer"
+               data-tilt>
+            <div class="card-shine"></div>
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20
+                        flex items-center justify-center mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                   stroke="#67e8f9" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4l3 3"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Product Thinking</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Shipping fast isn't enough. I obsess over the details that transform good
+              software into memorable experiences.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">Strategy</span>
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">UX Research</span>
+              <span class="skill-tag text-xs px-2.5 py-1 rounded-full text-slate-400">Metrics</span>
+            </div>
+            <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="grad-divider relative z-10"></div>
+
+  <!-- ════════════════════════════════════════
+       ABOUT PREVIEW
+  ════════════════════════════════════════ -->
+  <section class="py-32 px-6 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+        <!-- Text -->
+        <div>
+          <span class="reveal text-violet-400 text-xs font-semibold tracking-widest uppercase mb-4 block">
+            About
+          </span>
+          <h2 class="reveal rv1 text-4xl md:text-5xl font-bold leading-tight mb-7 tracking-tight">
+            Hi, I'm Joe.<br/>
+            <span class="grad-text-subtle">I build things</span><br/>
+            people love to use.
+          </h2>
+          <p class="reveal rv2 text-slate-400 text-base leading-loose mb-4">
+            I'm a developer and creative thinker who operates at the intersection of
+            engineering precision and design sensibility. I don't just write code —
+            I craft experiences that stick.
+          </p>
+          <p class="reveal rv3 text-slate-500 text-base leading-loose">
+            This portfolio is in progress. It will be worth the wait.
+          </p>
+
+          <!-- Stats -->
+          <div class="reveal rv4 grid grid-cols-3 gap-6 mt-10 pt-10
+                      border-t border-white/[0.06]">
+            <div>
+              <div class="text-3xl font-bold grad-text mb-1 tabular-nums">5+</div>
+              <div class="text-slate-500 text-xs">Years shipping</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold grad-text mb-1">∞</div>
+              <div class="text-slate-500 text-xs">Side projects</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold grad-text mb-1 tabular-nums">1</div>
+              <div class="text-slate-500 text-xs">Coffee at a time</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Abstract 3D visual -->
+        <div class="reveal rv2">
+          <div class="scene">
+            <div class="card-3d" data-tilt data-tilt-max="7">
+              <div class="glass rounded-3xl p-6 relative overflow-hidden" style="min-height:360px;">
+
+                <!-- Top shimmer line -->
+                <div class="absolute top-0 inset-x-0 h-px
+                            bg-gradient-to-r from-transparent via-violet-500/50 to-transparent"></div>
+
+                <!-- Abstract UI mockup cells -->
+                <div class="flex flex-col gap-3 h-full">
+
+                  <!-- Row 1 -->
+                  <div class="flex gap-3">
+                    <div class="vis-cell flex-none w-20 h-14 bg-violet-500/15
+                                border-violet-500/20 flex items-center justify-center">
+                      <div class="w-5 h-5 rounded-full bg-violet-400/50"></div>
+                    </div>
+                    <div class="vis-cell flex-1 h-14 bg-blue-500/10 border-blue-500/15
+                                flex items-center px-4 gap-2">
+                      <div class="w-2 h-2 rounded-full bg-blue-400/60"></div>
+                      <div class="h-1.5 flex-1 bg-blue-400/20 rounded-full"></div>
+                    </div>
+                    <div class="vis-cell flex-none w-12 h-14 bg-slate-700/25 border-slate-700/30"></div>
+                  </div>
+
+                  <!-- Row 2: wide card -->
+                  <div class="vis-cell flex-1 bg-gradient-to-br from-violet-500/8 to-blue-500/8
+                              border-slate-700/40 p-5 flex flex-col justify-between"
+                       style="min-height:100px;">
+                    <div class="flex items-center gap-2 mb-3">
+                      <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                      <div class="h-1.5 w-24 bg-slate-600/70 rounded-full"></div>
+                    </div>
+                    <div class="space-y-2">
+                      <div class="h-1.5 w-full bg-slate-700/70 rounded-full"></div>
+                      <div class="h-1.5 w-5/6 bg-slate-700/50 rounded-full"></div>
+                      <div class="h-1.5 w-4/6 bg-slate-700/40 rounded-full"></div>
+                    </div>
+                    <div class="flex gap-2 mt-4">
+                      <div class="h-7 flex-1 rounded-lg bg-violet-500/20 border border-violet-500/25
+                                  flex items-center justify-center">
+                        <div class="h-1.5 w-10 bg-violet-400/40 rounded-full"></div>
+                      </div>
+                      <div class="h-7 flex-none w-16 rounded-lg bg-blue-500/15 border border-blue-500/20"></div>
+                    </div>
+                  </div>
+
+                  <!-- Row 3 -->
+                  <div class="flex gap-3">
+                    <div class="vis-cell flex-1 h-12 bg-slate-700/20 border-slate-700/25"></div>
+                    <div class="vis-cell flex-1 h-12 bg-gradient-to-r from-cyan-500/10 to-blue-500/10
+                                border-cyan-500/15 flex items-center px-3">
+                      <div class="h-1.5 w-12 bg-cyan-400/25 rounded-full mr-2"></div>
+                      <div class="ml-auto w-2 h-2 rounded-full bg-cyan-400/40"></div>
+                    </div>
+                    <div class="vis-cell flex-none w-16 h-12 bg-violet-500/10 border-violet-500/15
+                                flex items-center justify-center">
+                      <div class="w-4 h-4 rounded bg-violet-400/30"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Bottom glow -->
+                <div class="absolute -bottom-14 left-1/2 -translate-x-1/2 w-56 h-28
+                            bg-violet-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 inset-x-0 h-px
+                            bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+
+                <div class="card-shine rounded-3xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="grad-divider relative z-10"></div>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="py-10 px-6 relative z-10">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500
+                    flex items-center justify-center text-white font-bold"
+             style="font-size:9px;">JC</div>
+        <span class="text-slate-600 text-sm">© 2026 Joe Crockett</span>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="https://github.com/joecrockett"   class="social-link text-xs text-slate-500" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://x.com/joecrockett"        class="social-link text-xs text-slate-500" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://linkedin.com/in/joecrockett" class="social-link text-xs text-slate-500" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="text-slate-700 text-xs select-none">Made with ♥ + Claude</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════ -->
+  <script>
+    // ── Cursor glow ──────────────────────────────────────────────
+    const cursorGlow = document.getElementById('cursorGlow');
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0, rafId;
+
+    document.addEventListener('mousemove', e => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      cursorGlow.style.opacity = '1';
+    });
+    document.addEventListener('mouseleave', () => { cursorGlow.style.opacity = '0'; });
+
+    (function tick() {
+      currentX += (targetX - currentX) * 0.09;
+      currentY += (targetY - currentY) * 0.09;
+      cursorGlow.style.left = currentX + 'px';
+      cursorGlow.style.top  = currentY + 'px';
+      requestAnimationFrame(tick);
+    })();
+
+    // ── Header scroll glaze ───────────────────────────────────────
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      header.style.background = window.scrollY > 40
+        ? 'rgba(6,6,8,0.85)'
+        : 'transparent';
+    }, { passive: true });
+
+    // ── Parallax orbs on scroll ───────────────────────────────────
+    const orbPurple = document.querySelector('.orb-purple');
+    const orbBlue   = document.querySelector('.orb-blue');
+
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      orbPurple.style.transform = `translate(0, ${s * 0.14}px)`;
+      orbBlue.style.transform   = `translate(0, ${-s * 0.09}px)`;
+    }, { passive: true });
+
+    // ── 3D Tilt on [data-tilt] cards ─────────────────────────────
+    const DEFAULT_TILT = 12;
+
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      const max   = parseFloat(card.dataset.tiltMax) || DEFAULT_TILT;
+      const shine = card.querySelector('.card-shine');
+      let entering = false;
+
+      card.addEventListener('mouseenter', () => {
+        entering = true;
+        card.style.transition = 'transform 0.12s ease';
+      });
+
+      card.addEventListener('mousemove', e => {
+        const r  = card.getBoundingClientRect();
+        const x  = e.clientX - r.left;
+        const y  = e.clientY - r.top;
+        const rx = ((y - r.height / 2) / (r.height / 2)) * -max;
+        const ry = ((x - r.width  / 2) / (r.width  / 2)) *  max;
+
+        card.style.transform =
+          `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.025,1.025,1.025)`;
+
+        if (shine) {
+          shine.style.setProperty('--mx', (x / r.width  * 100) + '%');
+          shine.style.setProperty('--my', (y / r.height * 100) + '%');
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.55s ease';
+        card.style.transform  = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+      });
+    });
+
+    // ── Scroll reveal via IntersectionObserver ───────────────────
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── Email form ────────────────────────────────────────────────
+    const emailInput   = document.getElementById('emailInput');
+    const emailForm    = document.getElementById('emailForm');
+    const successState = document.getElementById('successState');
+
+    function handleSubmit() {
+      const val = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        emailInput.classList.add('invalid');
+        const orig = emailInput.placeholder;
+        emailInput.placeholder = 'Please enter a valid email';
+        emailInput.focus();
+        setTimeout(() => {
+          emailInput.classList.remove('invalid');
+          emailInput.placeholder = orig;
+        }, 2600);
+        return;
+      }
+
+      // Fade out form
+      emailForm.style.transition = 'opacity 0.3s, transform 0.3s';
+      emailForm.style.opacity    = '0';
+      emailForm.style.transform  = 'translateY(-8px)';
+
+      setTimeout(() => {
+        emailForm.style.display = 'none';
+        successState.style.display = 'flex';
+        successState.style.flexDirection = 'column';
+        successState.style.alignItems = 'center';
+        successState.style.gap = '0.75rem';
+        // re-trigger animation
+        const icon = successState.querySelector('div');
+        icon.classList.remove('success-pop');
+        void icon.offsetWidth;
+        icon.classList.add('success-pop');
+      }, 300);
+    }
+
+    emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
+    document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+
+    // ── Abstract visual cell idle animation ──────────────────────
+    // Subtle shimmer on the mockup cells so it feels alive
+    const visCells = document.querySelectorAll('.vis-cell');
+    function shimmerCells() {
+      const idx = Math.floor(Math.random() * visCells.length);
+      visCells[idx].style.opacity = '0.5';
+      setTimeout(() => { visCells[idx].style.opacity = '1'; }, 400);
+    }
+    setInterval(shimmerCells, 1800);
+  </script>
+
+</body>
+</html>
