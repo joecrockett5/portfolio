@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site-check:
+    name: Site check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.63.0
+          npx playwright install --with-deps chromium
+      - name: Check the site in headless Chromium
+        run: |
+          python3 -m http.server 3333 --bind 127.0.0.1 >/dev/null 2>&1 &
+          npx --yes wait-on@8 --timeout 20000 http-get://127.0.0.1:3333/
+          node .github/scripts/site-check.cjs http://127.0.0.1:3333/
