@@ -136,7 +136,7 @@
           </div>
           <div class="stat">
             <dt>projects shipped end to end</dt>
-            <dd><span data-count="5">5</span></dd>
+            <dd><span data-count="6">6</span><em>+</em></dd>
           </div>
           <div class="stat">
             <dt>self-hosted services running</dt>
@@ -169,7 +169,7 @@
           <p class="eyebrow"><span class="num">01</span>Selected work</p>
           <h2>Things I've built</h2>
           <p class="section__intro">
-            Five applications, each designed and shipped end to end with AI-assisted development,
+            Six applications, each designed and shipped end to end with AI-assisted development,
             with tests, CI and releases, and published on GitHub.
           </p>
         </header>
@@ -190,7 +190,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">01 <span>/ 05</span></p>
+            <p class="project__index">01 <span>/ 06</span></p>
             <h3>Strata</h3>
             <p class="project__tag">A section-based website builder with server-enforced brand locks</p>
             <p>
@@ -228,7 +228,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">02 <span>/ 05</span></p>
+            <p class="project__index">02 <span>/ 06</span></p>
             <h3>Photo Planet</h3>
             <p class="project__tag">Your photos, pinned where they were taken, on a pixel-art planet you can spin</p>
             <p>
@@ -265,7 +265,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">03 <span>/ 05</span></p>
+            <p class="project__index">03 <span>/ 06</span></p>
             <h3>slot-mini</h3>
             <p class="project__tag">A cartridge-shelf game launcher for a handheld with no GPU</p>
             <p>
@@ -304,7 +304,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">04 <span>/ 05</span></p>
+            <p class="project__index">04 <span>/ 06</span></p>
             <h3>Tally</h3>
             <p class="project__tag">A self-hosted food diary and nutrition tracker for UK households</p>
             <p>
@@ -343,7 +343,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">05 <span>/ 05</span></p>
+            <p class="project__index">05 <span>/ 06</span></p>
             <h3>train-hard</h3>
             <p class="project__tag">A workout tracker you host yourself</p>
             <p>
@@ -359,6 +359,44 @@
               <li>Python</li><li>FastAPI</li><li>SvelteKit</li><li>DynamoDB</li><li>Docker</li>
             </ul>
             <a class="link" href="https://github.com/joecrockett5/train-hard" target="_blank" rel="noopener">
+              <span>View on GitHub</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Earshot -->
+        <article class="project project--flip" style="--accent-p:#f2a14a">
+          <div class="project__media reveal">
+            <div class="stage" data-tilt>
+              <figure class="window window--dark">
+                <figcaption class="window__bar"><i></i><i></i><i></i><span>earshot · front door</span></figcaption>
+                <video muted loop playsinline preload="none" width="800" height="500"
+                  poster="assets/media/earshot-poster.webp"
+                  aria-label="Earshot demo: dropping two sounds on a radar around a listener, dragging one, playing the scene and exporting it">
+                  <source src="assets/media/earshot.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+          <div class="project__body reveal">
+            <p class="project__index">06 <span>/ 06</span></p>
+            <h3>Earshot</h3>
+            <p class="project__tag">Place a sound. Hear it there.</p>
+            <p>
+              A self-hosted spatial audio scene designer. Drop sounds around a listener on a radar, hear
+              them in that spot on headphones, and export the result as a binaural WAV that plays in any
+              player.
+            </p>
+            <ul class="ticks">
+              <li>Each dot on the radar is a Web Audio panner in HRTF mode, with level roll-off, a gentle high-frequency loss and a touch of room reverb for distance.</li>
+              <li>Export rebuilds the identical audio graph offline, renders it faster than real time and encodes the WAV in the browser.</li>
+              <li>Scenes are plain JSON and clips are plain files in one folder, served from one small container with no database.</li>
+            </ul>
+            <ul class="chips">
+              <li>TypeScript</li><li>React 19</li><li>Web Audio</li><li>Fastify</li><li>Docker</li>
+            </ul>
+            <a class="link" href="https://github.com/joecrockett5/earshot" target="_blank" rel="noopener">
               <span>View on GitHub</span>
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
