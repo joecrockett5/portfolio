@@ -668,7 +668,7 @@ code { white-space: nowrap; font-family: var(--font-mono); font-size: 0.88em; pa
 }
 .wire--up i { animation-direction: reverse; }
 .wire i::after {
-  content: ""; position: absolute; left: -4px; width: 8px; height: 8px;
+  content: ""; position: absolute; left: -3px; width: 8px; height: 8px;
   border-right: 2px solid var(--f-agent); border-bottom: 2px solid var(--f-agent);
 }
 .wire--down i::after { bottom: -1px; transform: rotate(45deg); }
