@@ -169,13 +169,191 @@
           <p class="eyebrow"><span class="num">01</span>Selected work</p>
           <h2>Things I've built</h2>
           <p class="section__intro">
-            Six applications, each designed and shipped end to end with AI-assisted development,
-            with tests, CI and releases, and published on GitHub.
+            An autonomous pipeline that is building an iPhone app, then six applications designed and
+            shipped end to end with AI-assisted development, with tests, CI and releases, and
+            published on GitHub.
           </p>
         </header>
 
+        <!-- Dark factory -->
+        <article class="factory" id="factory">
+          <header class="factory__head reveal">
+            <p class="eyebrow"><span class="factory__live" aria-hidden="true"></span>Running now · Photo Planet for iOS</p>
+            <h3>A dark factory that builds an iPhone app</h3>
+            <p class="factory__lede">
+              An autonomous development pipeline. An unattended AI agent develops a commercial iPhone
+              app around the clock, a second, interactive agent supervises the system, and I make the
+              product decisions.
+            </p>
+          </header>
+
+          <div class="floor reveal">
+            <div class="floor__top">
+              <p class="floor__title">pipeline · photo-planet-ios</p>
+              <ul class="floor__legend">
+                <li class="is-human">human</li>
+                <li class="is-agent">AI agent</li>
+                <li class="is-script">script, no LLM</li>
+              </ul>
+            </div>
+
+            <section class="lane">
+              <h4 class="lane__label">Control room</h4>
+              <div class="control">
+                <div class="node is-human">
+                  <p class="node__kind">me</p>
+                  <p class="node__name">Product owner</p>
+                  <p class="node__text">Writes the brief. Decides product, money and privacy.</p>
+                </div>
+                <p class="control__link" aria-hidden="true"><span>recommends</span><i></i><span>decides</span></p>
+                <div class="node is-agent">
+                  <p class="node__kind">interactive agent</p>
+                  <p class="node__name">Overseer</p>
+                  <p class="node__text">Maintains the pipeline itself: runner scripts, agent instructions, permissions.</p>
+                </div>
+              </div>
+            </section>
+
+            <ul class="wires">
+              <li class="wire wire--up"><i aria-hidden="true"></i><span><b>questions file</b> the worker asks instead of guessing</span></li>
+              <li class="wire wire--down"><i aria-hidden="true"></i><span><b>pull requests</b> fixes to mechanical and process problems</span></li>
+            </ul>
+
+            <section class="lane lane--floor">
+              <h4 class="lane__label">Factory floor <em>lights out</em></h4>
+              <ol class="belt">
+                <li class="station is-human">
+                  <p class="station__n">01</p>
+                  <p class="station__name">Brief</p>
+                  <p class="station__text">The product spec, written with a second agent's help.</p>
+                </li>
+                <li class="station is-agent">
+                  <p class="station__n">02</p>
+                  <p class="station__name">Plan</p>
+                  <p class="station__text">About 36 milestones, each with acceptance criteria and a link back to the brief.</p>
+                </li>
+                <li class="station is-agent station--main">
+                  <p class="station__n">03</p>
+                  <p class="station__name">Worker</p>
+                  <p class="station__text">A dedicated Mac on a schedule. Each session builds and tests the next milestone.</p>
+                  <p class="station__tag">blocked → move on</p>
+                </li>
+                <li class="station is-script station--main">
+                  <p class="station__n">04</p>
+                  <p class="station__name">Verify</p>
+                  <p class="station__text">Rebuilds, runs the tests and checks protected files, outside the AI.</p>
+                  <p class="station__tag">broken → fixed first</p>
+                </li>
+                <li class="station is-script">
+                  <p class="station__n">05</p>
+                  <p class="station__name">Push</p>
+                  <p class="station__text">Only verified work leaves the machine, on the agent's own branch.</p>
+                </li>
+                <li class="belt__packets" aria-hidden="true"><i></i><i></i><i></i></li>
+              </ol>
+            </section>
+
+            <ul class="wires">
+              <li class="wire wire--down"><i aria-hidden="true"></i><span><b>events and costs</b> logged for every session</span></li>
+              <li class="wire wire--up"><i aria-hidden="true"></i><span><b>alerts</b> wake the overseer when the worker is stuck</span></li>
+            </ul>
+
+            <section class="lane">
+              <h4 class="lane__label">Monitoring <em>no LLM</em></h4>
+              <ul class="monitors">
+                <li class="node is-script"><p class="node__name">Push notifications</p><p class="node__text">To my phone, for events that need attention.</p></li>
+                <li class="node is-script"><p class="node__name">Dead-man's switch</p><p class="node__text">Fires if the machine goes quiet.</p></li>
+                <li class="node is-script"><p class="node__name">Cost ledger</p><p class="node__text">Per session, against a fixed monthly budget. Stops and resumes on its own.</p></li>
+              </ul>
+            </section>
+          </div>
+
+          <dl class="factory__stats reveal">
+            <div><dd>$0.15–0.43</dd><dt>API cost of each routine session</dt></div>
+            <div><dd>~36</dd><dt>milestones planned from the brief</dt></div>
+            <div><dd>&lt; 1 day</dd><dt>from approved plan to the planet maths and terrain data ported to Swift, with passing unit tests</dt></div>
+          </dl>
+
+          <ul class="factory__grid">
+            <li class="reveal">
+              <h4>Spec-driven</h4>
+              <p>An AI planning run turned the brief into milestones. Guardrails stop the plan adding anything the brief doesn't ask for, such as accounts, a backend, ads or tracking.</p>
+            </li>
+            <li class="reveal">
+              <h4>Unattended worker</h4>
+              <p>Each session picks the next milestone, builds and tests it with a strict tool allow-list, logs its progress and commits to its own branch.</p>
+            </li>
+            <li class="reveal">
+              <h4>Independent verification</h4>
+              <p>After every session a script outside the AI rebuilds the project, runs the test suite and checks the agent stayed out of protected files. A broken build is the next session's first job.</p>
+            </li>
+            <li class="reveal">
+              <h4>Exception handling</h4>
+              <p>A milestone that keeps failing, or is waiting on an answer, is marked blocked and the agent moves on, so it never loops on a problem.</p>
+            </li>
+            <li class="reveal">
+              <h4>Monitoring with no LLM</h4>
+              <p>Alerts, the dead-man's switch and the cost ledger are plain scripts. When API credits run out, the pipeline stops and resumes automatically.</p>
+            </li>
+            <li class="reveal">
+              <h4>Supervisor agent</h4>
+              <p>The overseer fixes mechanical and process problems through pull requests, and passes product, money and privacy decisions to me with a recommendation.</p>
+            </li>
+            <li class="reveal">
+              <h4>Governance</h4>
+              <p>Protected main branch, every change through a PR, least-privilege tokens and no signing credentials on the agent machine. A trial mode has me approve sessions in batches before it gets full autonomy.</p>
+            </li>
+            <li class="reveal factory__origin">
+              <h4>Where it started</h4>
+              <p>Photo Planet began as the web app below. It was well received and several people asked for an app, so this pipeline is building one.</p>
+              <a class="link" href="#photo-planet"><span>See the original</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+            </li>
+          </ul>
+
+          <ul class="chips reveal">
+            <li>AI agents</li><li>Spec-driven development</li><li>iOS</li><li>Swift</li><li>Automation</li><li>GitHub pull requests</li>
+          </ul>
+        </article>
+
+        <!-- Photo Planet -->
+        <article class="project" id="photo-planet" style="--accent-p:#5a8dff">
+          <div class="project__media reveal">
+            <div class="stage" data-tilt>
+              <figure class="window window--dark">
+                <figcaption class="window__bar"><i></i><i></i><i></i><span>photo planet</span></figcaption>
+                <video class="pixelated" muted loop playsinline preload="none" width="800" height="500"
+                  poster="assets/media/photo-planet-poster.webp"
+                  aria-label="Photo Planet demo: a pixel-art Earth turning under stars, flying to a pin in Lisbon to open its photos, then zooming in on Japan">
+                  <source src="assets/media/photo-planet.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+          <div class="project__body reveal">
+            <p class="project__index">01 <span>/ 06</span></p>
+            <h3>Photo Planet</h3>
+            <p class="project__tag">Your photos, pinned where they were taken, on a pixel-art planet you can spin</p>
+            <p>
+              A self-hosted photo and video map. Uploads place themselves on a hand-drawn pixel Earth
+              using the location and date stored in each file, and you browse them by place and by day.
+            </p>
+            <ul class="ticks">
+              <li>A custom renderer draws the planet: real coastlines and biomes, dithered day and night, drifting clouds, and a fling when you let go.</li>
+              <li>Place names like “Osaka, Japan” are resolved offline. Nothing is sent to a third-party service.</li>
+              <li>HEIC photos and MOV or HEVC videos are converted in the background so everything plays in any browser.</li>
+            </ul>
+            <ul class="chips">
+              <li>TypeScript</li><li>Fastify</li><li>SQLite</li><li>Canvas</li><li>Docker</li>
+            </ul>
+            <a class="link" href="https://github.com/joecrockett5/photo-planet" target="_blank" rel="noopener">
+              <span>View on GitHub</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+        </article>
+
         <!-- Strata -->
-        <article class="project" style="--accent-p:#7c8cff">
+        <article class="project project--flip" style="--accent-p:#7c8cff">
           <div class="project__media reveal">
             <div class="stage" data-tilt>
               <figure class="window">
@@ -190,7 +368,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">01 <span>/ 06</span></p>
+            <p class="project__index">02 <span>/ 06</span></p>
             <h3>Strata</h3>
             <p class="project__tag">A section-based website builder with server-enforced brand locks</p>
             <p>
@@ -207,43 +385,6 @@
               <li>C#</li><li>.NET 10</li><li>React 19</li><li>TypeScript</li><li>PostgreSQL</li><li>Playwright</li>
             </ul>
             <a class="link" href="https://github.com/joecrockett5/strata" target="_blank" rel="noopener">
-              <span>View on GitHub</span>
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
-          </div>
-        </article>
-
-        <!-- Photo Planet -->
-        <article class="project project--flip" style="--accent-p:#5a8dff">
-          <div class="project__media reveal">
-            <div class="stage" data-tilt>
-              <figure class="window window--dark">
-                <figcaption class="window__bar"><i></i><i></i><i></i><span>photo planet</span></figcaption>
-                <video class="pixelated" muted loop playsinline preload="none" width="800" height="500"
-                  poster="assets/media/photo-planet-poster.webp"
-                  aria-label="Photo Planet demo: a pixel-art Earth turning under stars, flying to a pin in Lisbon to open its photos, then zooming in on Japan">
-                  <source src="assets/media/photo-planet.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-          <div class="project__body reveal">
-            <p class="project__index">02 <span>/ 06</span></p>
-            <h3>Photo Planet</h3>
-            <p class="project__tag">Your photos, pinned where they were taken, on a pixel-art planet you can spin</p>
-            <p>
-              A self-hosted photo and video map. Uploads place themselves on a hand-drawn pixel Earth
-              using the location and date stored in each file, and you browse them by place and by day.
-            </p>
-            <ul class="ticks">
-              <li>A custom renderer draws the planet: real coastlines and biomes, dithered day and night, drifting clouds, and a fling when you let go.</li>
-              <li>Place names like “Osaka, Japan” are resolved offline. Nothing is sent to a third-party service.</li>
-              <li>HEIC photos and MOV or HEVC videos are converted in the background so everything plays in any browser.</li>
-            </ul>
-            <ul class="chips">
-              <li>TypeScript</li><li>Fastify</li><li>SQLite</li><li>Canvas</li><li>Docker</li>
-            </ul>
-            <a class="link" href="https://github.com/joecrockett5/photo-planet" target="_blank" rel="noopener">
               <span>View on GitHub</span>
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
@@ -288,8 +429,46 @@
           </div>
         </article>
 
+        <!-- Earshot -->
+        <article class="project project--flip" style="--accent-p:#f2a14a">
+          <div class="project__media reveal">
+            <div class="stage" data-tilt>
+              <figure class="window window--dark">
+                <figcaption class="window__bar"><i></i><i></i><i></i><span>earshot · front door</span></figcaption>
+                <video muted loop playsinline preload="none" width="800" height="500"
+                  poster="assets/media/earshot-poster.webp"
+                  aria-label="Earshot demo: dropping two sounds on a radar around a listener, dragging one, playing the scene and exporting it">
+                  <source src="assets/media/earshot.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+          <div class="project__body reveal">
+            <p class="project__index">04 <span>/ 06</span></p>
+            <h3>Earshot</h3>
+            <p class="project__tag">Place a sound. Hear it there.</p>
+            <p>
+              A self-hosted spatial audio scene designer. Drop sounds around a listener on a radar, hear
+              them in that spot on headphones, and export the result as a binaural WAV that plays in any
+              player.
+            </p>
+            <ul class="ticks">
+              <li>Each dot on the radar is a Web Audio panner in HRTF mode, with level roll-off, a gentle high-frequency loss and a touch of room reverb for distance.</li>
+              <li>Export rebuilds the identical audio graph offline, renders it faster than real time and encodes the WAV in the browser.</li>
+              <li>Scenes are plain JSON and clips are plain files in one folder, served from one small container with no database.</li>
+            </ul>
+            <ul class="chips">
+              <li>TypeScript</li><li>React 19</li><li>Web Audio</li><li>Fastify</li><li>Docker</li>
+            </ul>
+            <a class="link" href="https://github.com/joecrockett5/earshot" target="_blank" rel="noopener">
+              <span>View on GitHub</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+        </article>
+
         <!-- Tally -->
-        <article class="project project--flip" style="--accent-p:#3fc8a4">
+        <article class="project" style="--accent-p:#3fc8a4">
           <div class="project__media reveal">
             <div class="stage" data-tilt>
               <figure class="window">
@@ -304,7 +483,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">04 <span>/ 06</span></p>
+            <p class="project__index">05 <span>/ 06</span></p>
             <h3>Tally</h3>
             <p class="project__tag">A self-hosted food diary and nutrition tracker for UK households</p>
             <p>
@@ -327,7 +506,7 @@
         </article>
 
         <!-- train-hard -->
-        <article class="project" style="--accent-p:#ff8a4c">
+        <article class="project project--flip" style="--accent-p:#ff8a4c">
           <div class="project__media reveal">
             <div class="stage stage--phones" data-tilt>
               <figure class="handset">
@@ -343,7 +522,7 @@
             </div>
           </div>
           <div class="project__body reveal">
-            <p class="project__index">05 <span>/ 06</span></p>
+            <p class="project__index">06 <span>/ 06</span></p>
             <h3>train-hard</h3>
             <p class="project__tag">A workout tracker you host yourself</p>
             <p>
@@ -359,44 +538,6 @@
               <li>Python</li><li>FastAPI</li><li>SvelteKit</li><li>DynamoDB</li><li>Docker</li>
             </ul>
             <a class="link" href="https://github.com/joecrockett5/train-hard" target="_blank" rel="noopener">
-              <span>View on GitHub</span>
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
-          </div>
-        </article>
-
-        <!-- Earshot -->
-        <article class="project project--flip" style="--accent-p:#f2a14a">
-          <div class="project__media reveal">
-            <div class="stage" data-tilt>
-              <figure class="window window--dark">
-                <figcaption class="window__bar"><i></i><i></i><i></i><span>earshot · front door</span></figcaption>
-                <video muted loop playsinline preload="none" width="800" height="500"
-                  poster="assets/media/earshot-poster.webp"
-                  aria-label="Earshot demo: dropping two sounds on a radar around a listener, dragging one, playing the scene and exporting it">
-                  <source src="assets/media/earshot.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-          <div class="project__body reveal">
-            <p class="project__index">06 <span>/ 06</span></p>
-            <h3>Earshot</h3>
-            <p class="project__tag">Place a sound. Hear it there.</p>
-            <p>
-              A self-hosted spatial audio scene designer. Drop sounds around a listener on a radar, hear
-              them in that spot on headphones, and export the result as a binaural WAV that plays in any
-              player.
-            </p>
-            <ul class="ticks">
-              <li>Each dot on the radar is a Web Audio panner in HRTF mode, with level roll-off, a gentle high-frequency loss and a touch of room reverb for distance.</li>
-              <li>Export rebuilds the identical audio graph offline, renders it faster than real time and encodes the WAV in the browser.</li>
-              <li>Scenes are plain JSON and clips are plain files in one folder, served from one small container with no database.</li>
-            </ul>
-            <ul class="chips">
-              <li>TypeScript</li><li>React 19</li><li>Web Audio</li><li>Fastify</li><li>Docker</li>
-            </ul>
-            <a class="link" href="https://github.com/joecrockett5/earshot" target="_blank" rel="noopener">
               <span>View on GitHub</span>
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
